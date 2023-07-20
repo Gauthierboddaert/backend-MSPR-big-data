@@ -12,7 +12,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: pma
     restart: always
     depends_on:
       - mysql
