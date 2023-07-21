@@ -2,28 +2,48 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-path_file_excel = './data/data.xlsx'
+def readfile(path):
+    return pd.read_excel(path)
 
-data_frame = pd.read_excel(path_file_excel)
+def get_data_from_file(index):
+    path = './data/data.xlsx'
+    data = readfile(path)
+    
+    return data[index]
 
-x = [1, 2, 3, 4, 5]
-y = [2, 4, 6, 8, 10]
+def creategraph():
+    fig, ax = plt.subplots(figsize=(20, 10))
+    candidats = ['arthaud', 'roussel', 'macron', 'lassalle', 'le pen', 'zemmour', 'melenchon', 'hidalgo', 'jadot', 'pecresse', 'poutou','nda']
 
-# Données à tracer
-x = [1, 2, 3, 4, 5]
-y = [2, 4, 6, 8, 10]
+    data = [
+        get_data_from_file('pourcentage_arthaud').sum(),
+        get_data_from_file('pourcentage_roussel').sum(),
+        get_data_from_file('pourcentage_macron').sum(),
+        get_data_from_file('pourcentage_lassalle').sum(),
+        get_data_from_file('pourcentage_le_pen').sum(),
+        get_data_from_file('pourcentage_zemmour').sum(),
+        get_data_from_file('pourcentage_melenchon').sum(),
+        get_data_from_file('pourcentage_hidalgo').sum(),
+        get_data_from_file('pourcentage_jadot').sum(),
+        get_data_from_file('pourcentage_pecresse').sum(),
+        get_data_from_file('pourcentage_poutou').sum(),
+        get_data_from_file('pourcentage_nda').sum()
+    ]
 
-# Créer le graphe
-plt.plot(x, y, label='Ligne de données')
+    bar_labels = ['arthaud', 'roussel', 'macron', 'lassalle', 'le pen', 'zemmour', 'melenchon', 'hidalgo', 'jadot', 'pecresse', 'poutou','nda']
+    bar_colors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange','tab:brown','tab:purple','tab:cyan','tab:grey','tab:pink','tab:olive','tab:red','tab:gray']
 
-# Ajouter des étiquettes aux axes
-plt.xlabel('Axe des abscisses')
-plt.ylabel('Axe des ordonnées')
+    ax.bar(candidats, data, label=bar_labels, color=bar_colors)
 
-# Ajouter un titre
-plt.title('Mon premier graphe avec matplotlib')
+    ax.set_ylabel('nombre de voix')
+    ax.set_title('Résultats des élections')
+    
+    plt.savefig('./graph/graph_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.png')
 
-# Afficher le graphe
-plt.show()
- 
-plt.savefig('./graph/graph'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.png')
+
+if __name__ == "__main__":
+    creategraph()
+
+
+
+
