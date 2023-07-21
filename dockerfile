@@ -1,7 +1,7 @@
 FROM python:3.9
 
 # Installer les dépendances
-RUN pip install requests beautifulsoup4 python-dotenv pandas openpyxl
+RUN pip install requests beautifulsoup4 python-dotenv pandas openpyxl matplotlib datetime
 
 # Copier le fichier main.py dans le conteneur
 COPY main.py /app/main.py
