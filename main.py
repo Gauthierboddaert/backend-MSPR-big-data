@@ -2,14 +2,59 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 
+data = ''
+fileName = 'Data_2022.xlsx'
+
 def readfile(path):
     return pd.read_excel(path)
 
 def get_data_from_file(index):
-    path = './data/data.xlsx'
+    global fileName
+    global data
+
+    path = './data/'+fileName
     data = readfile(path)
+        
     
     return data[index]
+
+
+def createCloudOfPoint():
+    global data
+    
+    communes = getDataInFile('Nom commune')
+    politicien_plus_vote = getDataInFile('Canditats')
+    pourcentages = getDataInFile('Votes')  # Assurez-vous de définir ou récupérer les données de votes
+
+   # Création du graphique à barres
+    plt.figure(figsize=(10, 6))
+    plt.bar(communes, pourcentages, color='blue')
+
+    # Ajout des labels et du titre
+    plt.xlabel('Communes')
+    plt.ylabel('Pourcentage de Votes')
+    plt.title('Pourcentage du politicien le plus voté dans chaque commune')
+
+    # Rotation des labels des communes pour une meilleure lisibilité
+    plt.xticks(rotation=45, ha='right')
+
+     # Afficher le nuage de points
+    plt.tight_layout()
+    plt.show()
+
+    # Enregistrer le graphique avant de l'afficher
+    plt.savefig('./graph/pointOfCloud_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.png')
+
+
+def getDataInFile(index):
+    communes = []
+
+    for index, valeur in enumerate(get_data_from_file(index)):
+        communes.append(valeur)
+
+    return communes
+
+
 
 def creategraph():
     fig, ax = plt.subplots(figsize=(20, 10))
@@ -41,9 +86,10 @@ def creategraph():
     plt.savefig('./graph/graph_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.png')
 
 
-if __name__ == "__main__":
-    creategraph()
 
+if __name__ == "__main__":
+    createCloudOfPoint()
+    
 
 
 
