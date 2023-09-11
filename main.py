@@ -47,24 +47,16 @@ def createCloudOfPoint():
 
 def createHistogramme(year):
 
-    noms_presidents = ['LE PEN', 'MACRON', 'MELENCHON', 'ZEMMOUR', 'PÉCRESSE', 'JADOT', 'LASSALLE', 'ROUSSEL', 'DUPONT-AIGNAN', 'DUPONT-AIGNAN', 'POUTOU', 'ARTHAUD']
-    nombre_de_votes = [10, 20, 30]
+    noms_presidents = ['Rassemblement National','En Marche', 'La France Insoumise', 'Les Républicains', 'Europe Ecologie Les Verts']
 
-    candidat = getDataInFile('Canditat avec le plus de voix')
+    candidat = getDataInFile('Parti Politique')
     total_vote = []
 
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'LE PEN'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'MACRON'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'MELENCHON'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'ZEMMOUR'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'PÉCRESSE'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'JADOT'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'LASSALLE'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'ROUSSEL'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'DUPONT-AIGNAN'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'DUPONT-AIGNAN'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'POUTOU'))
-    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'ARTHAUD'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'RN'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'EM'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'LFI'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'LR'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'EELV'))
 
     plt.figure(figsize=(10, 6))  # Ajustez la taille du graphique selon vos préférences.
 
@@ -72,8 +64,8 @@ def createHistogramme(year):
 
     # Étiquetage des axes
     plt.xlabel('Candidats')
-    plt.ylabel('Nombre de Votes')
-    plt.title('Total du candidat le plus voté par commune en '+ year)
+    plt.ylabel('Nombre de commune dans lequel le candidat arrive en tête')
+    plt.title('Représentativité des candidats dans le département du Nord par commune en '+ year)
     
     # Rotation des étiquettes sur l'axe des x pour plus de lisibilité
     plt.xticks(rotation=45, ha='right')
