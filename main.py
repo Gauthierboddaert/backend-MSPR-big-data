@@ -23,16 +23,15 @@ def createCloudOfPoint():
     global data
     
     communes = getDataInFile('Nom commune')
-    politicien_plus_vote = getDataInFile('Canditats')
-    pourcentages = getDataInFile('Votes')  # Assurez-vous de définir ou récupérer les données de votes
+    politicien_plus_vote = getDataInFile('Canditat avec le plus de voix')
 
    # Création du graphique à barres
     plt.figure(figsize=(10, 6))
-    plt.bar(communes, pourcentages, color='blue')
+    plt.bar(communes, politicien_plus_vote, color='blue')
 
     # Ajout des labels et du titre
     plt.xlabel('Communes')
-    plt.ylabel('Pourcentage de Votes')
+    plt.ylabel('Canditat avec le plus de voix')
     plt.title('Pourcentage du politicien le plus voté dans chaque commune')
 
     # Rotation des labels des communes pour une meilleure lisibilité
@@ -43,8 +42,60 @@ def createCloudOfPoint():
     plt.show()
 
     # Enregistrer le graphique avant de l'afficher
-    plt.savefig('./graph/pointOfCloud_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.png')
+    plt.savefig('./graph/histogram_2022'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.png')
 
+
+def createHistogramme(year):
+
+    noms_presidents = ['LE PEN', 'MACRON', 'MELENCHON', 'ZEMMOUR', 'PÉCRESSE', 'JADOT', 'LASSALLE', 'ROUSSEL', 'DUPONT-AIGNAN', 'DUPONT-AIGNAN', 'POUTOU', 'ARTHAUD']
+    nombre_de_votes = [10, 20, 30]
+
+    candidat = getDataInFile('Canditat avec le plus de voix')
+    total_vote = []
+
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'LE PEN'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'MACRON'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'MELENCHON'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'ZEMMOUR'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'PÉCRESSE'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'JADOT'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'LASSALLE'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'ROUSSEL'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'DUPONT-AIGNAN'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'DUPONT-AIGNAN'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'POUTOU'))
+    total_vote.append(getNumberOfPresidentWithHigterVote(candidat, 'ARTHAUD'))
+
+    plt.figure(figsize=(10, 6))  # Ajustez la taille du graphique selon vos préférences.
+
+    plt.bar(noms_presidents, total_vote)
+
+    # Étiquetage des axes
+    plt.xlabel('Candidats')
+    plt.ylabel('Nombre de Votes')
+    plt.title('Total du candidat le plus voté par commune en '+ year)
+    
+    # Rotation des étiquettes sur l'axe des x pour plus de lisibilité
+    plt.xticks(rotation=45, ha='right')
+
+    # Affichage de l'histogramme
+    plt.tight_layout()  # Ajustement automatique de la mise en page
+    plt.show()
+
+    plt.savefig('./graph/histogram_2022'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.png')
+
+
+
+
+
+
+def getNumberOfPresidentWithHigterVote(candidats, president =''):
+    count_of_president = 0
+    for candidat in candidats : 
+        if candidat == president:
+            count_of_president += 1
+
+    return count_of_president
 
 def getDataInFile(index):
     communes = []
@@ -88,7 +139,7 @@ def creategraph():
 
 
 if __name__ == "__main__":
-    createCloudOfPoint()
+    createHistogramme("2022")
     
 
 
