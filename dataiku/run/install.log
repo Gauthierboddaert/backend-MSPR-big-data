@@ -1,0 +1,14 @@
+*********************************************************
+Data Science Studio installer: 2023/09/18-12:40:38
+Command line: /home/dataiku/dataiku-dss-11.2.0/installer.sh -d /home/dataiku/dss -p 10000
+Version: {"product_version" : "11.2.0", "product_commitid" : ""}
+DIP_HOME: /home/dataiku/dss
+
+[+] Using Java at /usr/bin/java : openjdk version "1.8.0_352"
+[+] Checking required dependencies
++ Detected OS distribution : almalinux 8.7
++ Checking required packages...
+[+] Installation starting
+[+] Initializing Python environment
+[+] Initializing Python environment using platform default
++ Using default base Python for this platform : python3.6

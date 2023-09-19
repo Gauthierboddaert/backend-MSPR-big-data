@@ -129,6 +129,9 @@ def creategraph():
     plt.savefig('./graph/graph_'+datetime.now().strftime('%Y-%m-%d_%H-%M-%S')+'.png')
 
 
+def createBubleGraph():
+    get_data_from_file('')
+
 
 if __name__ == "__main__":
     createHistogramme("2022")

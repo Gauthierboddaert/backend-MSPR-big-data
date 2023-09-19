@@ -26,6 +26,18 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./:/app
+
+  dataiku:
+    image: dataiku/dss
+    ports:
+      - "10000:10000"
+    volumes:
+      - ./dataiku:/home/dataiku/dss
+    environment:
+      - DSS_PORT=10000
+      - DSS_SECURITY_PUBLICAUTH_MODE=disabled
+      - DSS_SECURITY_AUTHENTICATION_MODE=disabled
+
       
 volumes:
   db:
